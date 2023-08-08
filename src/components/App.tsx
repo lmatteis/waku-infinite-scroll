@@ -4,7 +4,7 @@ const App = () => {
   return (
     <div className="App">
       <h2>
-        Infinite scroll React Server Components using{" "}
+        Infinite scroll streaming chunks of React Server Components using{" "}
         <a href="https://waku.gg/">Waku</a>
       </h2>
       <p>
