@@ -9,7 +9,7 @@ const App = () => {
       </h2>
       <p>
         You can find the code explanation{" "}
-        <a href="https://dev.to/hadi/infinite-scroll-in-firebase-firestore-and-react-js-55g3">
+        <a href="https://twitter.com/asidorenko_/status/1658503766763622400">
           here
         </a>
       </p>
