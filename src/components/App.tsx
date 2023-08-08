@@ -4,8 +4,8 @@ const App = () => {
   return (
     <div className="App">
       <h2>
-        Infinite scroll streaming chunks of React Server Components using{" "}
-        <a href="https://waku.gg/">Waku</a>
+        Infinite scroll by streaming chunks via recursive renders of React
+        Server Components using <a href="https://waku.gg/">Waku</a>
       </h2>
       <p>
         You can find the code explanation{" "}

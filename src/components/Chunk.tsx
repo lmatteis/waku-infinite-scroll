@@ -5,27 +5,29 @@ function randomIntFromInterval(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-const timeout = (resolve: any) =>
+const randomTimeout = (resolve: any) =>
   setTimeout(resolve, randomIntFromInterval(0, 2000));
 
 function createStream(page: number) {
   const stream = new ReadableStream({
     async start(controller) {
       // push 5 items at random intervals
-      await new Promise(timeout);
+      await new Promise(randomTimeout);
       controller.enqueue(1 + 5 * (page - 1));
 
-      await new Promise(timeout);
+      await new Promise(randomTimeout);
       controller.enqueue(2 + 5 * (page - 1));
 
-      await new Promise(timeout);
+      await new Promise(randomTimeout);
       controller.enqueue(3 + 5 * (page - 1));
 
-      await new Promise(timeout);
+      await new Promise(randomTimeout);
       controller.enqueue(4 + 5 * (page - 1));
 
-      await new Promise(timeout);
+      await new Promise(randomTimeout);
       controller.enqueue(5 + 5 * (page - 1));
+
+      controller.close();
     },
     pull(controller) {
       // We don't really need a pull in this example
@@ -42,7 +44,9 @@ function createStream(page: number) {
 async function Token({ reader }: { reader: ReadableStreamDefaultReader }) {
   const { done, value } = await reader.read();
 
-  if (done) return null;
+  if (done) {
+    return null;
+  }
 
   return (
     <>
@@ -54,7 +58,7 @@ async function Token({ reader }: { reader: ReadableStreamDefaultReader }) {
 
 function RecursiveReader({ reader }: { reader: ReadableStreamDefaultReader }) {
   return (
-    <Suspense fallback="wat">
+    <Suspense fallback={<p>Loading...</p>}>
       <Token reader={reader} />
     </Suspense>
   );

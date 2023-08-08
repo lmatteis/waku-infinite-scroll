@@ -6,14 +6,11 @@ import { serve } from "waku/client";
 const Chunk = serve<{ page: number }>("Chunk");
 
 export function MoreButton() {
-  const [isPending, startTransition] = useTransition();
   const [page, setPage] = useState(1);
 
   function handleClick() {
-    startTransition(() => {
-      setPage((p) => {
-        return p + 1;
-      });
+    setPage((p) => {
+      return p + 1;
     });
   }
 
@@ -24,9 +21,7 @@ export function MoreButton() {
           return <Chunk page={pageIdx + 1} key={pageIdx} />;
         })}
       </div>
-      <button onClick={handleClick}>
-        {isPending ? "Loading..." : "More Posts"}
-      </button>
+      <button onClick={handleClick}>More Posts</button>
     </div>
   );
 }
